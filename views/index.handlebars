@@ -1,0 +1,57 @@
+<div class="container">	
+	<div class="row">
+	    <div class="center col-sm-12 text-center">
+		<!-- burger logo -->
+		<img src="http://smokeybones.com/wp-content/uploads/2015/11/loaded-bbq-burger.jpg">
+
+	    </div>
+	</div>
+
+	<div class="row text-center">
+		<div class="col-sm-6">
+			<h2>Burger Menu</h2>
+		<!-- burgers available to eat -->
+			{{#each burgers}}
+			  {{#unless this.devoured}}
+					
+					<form action="/{{this.id}}?_method=PUT" method="POST">
+						
+							{{this.burger_name}}
+					
+						<input type="hidden" name="devoured" value="true">
+						<button class="btn-primary" type="submit" id="submit">DEVOUR IT!</button>
+					</form>
+					<hr>
+			  {{/unless}}
+			{{/each}}
+		</div>
+
+		<div class="col-sm-6">
+			<h2>Completed Orders</h2>
+		<!-- burgers eaten -->
+			{{#each burgers}}
+			  {{#if this.devoured}}
+					<div class="devoured">
+						{{this.burger_name}}
+					</div>
+					<hr>
+			  {{/if}}
+			{{/each}}
+		</div>
+	  </div>
+	</div>
+		
+	<div class="row text-center">
+		 <div class="center col-sm-12">
+		<!-- add a burger -->
+			<form class="text-center" action="/" method="POST">
+				<div class="form-group"><p>Enter a burger you want to order and click the Submit Order button.</p>
+				  <input type="text" id="burger" name="burger_name" placeholder="Add a Burger!"></input>
+				</div>
+
+				<button class="btn-primary" type="submit" id="submit">Submit Order</button>
+			</form>	  
+				
+	  	 </div>
+	</div>
+</div>	
